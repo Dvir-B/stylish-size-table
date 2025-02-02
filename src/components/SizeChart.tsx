@@ -1,5 +1,3 @@
-import { Card } from "@/components/ui/card";
-
 const SizeChart = () => {
   const sizes = [
     { size: "XS", chest: "86-91", waist: "71-76", hips: "86-91" },
@@ -10,7 +8,7 @@ const SizeChart = () => {
   ];
 
   return (
-    <Card className="w-full max-w-2xl mx-auto p-6 animate-fade-in">
+    <div className="w-full animate-fade-in">
       <h2 className="text-2xl font-semibold text-fashion-gray mb-6 text-center">
         טבלת מידות
       </h2>
@@ -45,7 +43,7 @@ const SizeChart = () => {
       <p className="text-sm text-fashion-gray mt-4 text-right">
         * המידות מוצגות בסנטימטרים
       </p>
-    </Card>
+    </div>
   );
 };
 
