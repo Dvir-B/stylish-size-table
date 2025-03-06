@@ -1,3 +1,4 @@
+
 const SizeChart = () => {
   const sizes = [
     { size: "XS", chest: "86-91", waist: "71-76", hips: "86-91" },
@@ -9,13 +10,13 @@ const SizeChart = () => {
 
   return (
     <div className="w-full animate-fade-in">
-      <h2 className="text-2xl font-semibold text-fashion-gray mb-6 text-center">
+      <h2 className="text-2xl font-semibold text-fashion-gray mb-6 text-center wix-title">
         טבלת מידות
       </h2>
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
+        <table className="w-full border-collapse wix-table">
           <thead>
-            <tr className="border-b-2 border-fashion-purple">
+            <tr className="border-b-2 border-fashion-purple wix-table-header">
               <th className="p-4 text-fashion-gray text-right">מידה</th>
               <th className="p-4 text-fashion-gray text-right">חזה (ס״מ)</th>
               <th className="p-4 text-fashion-gray text-right">מותן (ס״מ)</th>
@@ -27,7 +28,7 @@ const SizeChart = () => {
               <tr
                 key={size.size}
                 className={`
-                  border-b border-gray-100 hover:bg-gray-50 transition-colors
+                  border-b border-gray-100 hover:bg-gray-50 transition-colors wix-table-row
                   ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}
                 `}
               >

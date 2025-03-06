@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,6 +50,12 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Wix design system colors */
+    --wix-blue-primary: 210 100% 50%;
+    --wix-blue-secondary: 210 80% 60%;
+    --wix-text-color: 0 0% 20%;
+    --wix-background: 0 0% 98%;
   }
 
   .dark {
@@ -97,5 +104,64 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Wix Design System Classes */
+@layer components {
+  .wix-heading {
+    @apply text-2xl font-medium text-[#162d3d];
+  }
+  
+  .wix-title {
+    @apply text-xl font-medium text-[#162d3d];
+  }
+  
+  .wix-text {
+    @apply text-[#162d3d] leading-normal;
+  }
+  
+  .wix-card {
+    @apply rounded-md border-[#dfe5eb] shadow-sm;
+  }
+  
+  .wix-button {
+    @apply bg-[#3899ec] hover:bg-[#4eb7f5] text-white rounded-md transition-colors;
+  }
+  
+  .wix-button-secondary {
+    @apply border border-[#3899ec] text-[#3899ec] bg-white hover:bg-[#f0f4f7];
+  }
+  
+  .wix-input {
+    @apply border-[#dfe5eb] rounded-md focus:border-[#3899ec] focus:ring-[#3899ec];
+  }
+  
+  .wix-select {
+    @apply border-[#dfe5eb] rounded-md focus:border-[#3899ec] focus:ring-[#3899ec];
+  }
+  
+  .wix-label {
+    @apply text-[#162d3d] font-medium;
+  }
+  
+  .wix-table {
+    @apply border-collapse;
+  }
+  
+  .wix-table-header {
+    @apply bg-[#f0f4f7];
+  }
+  
+  .wix-table-row {
+    @apply border-b border-[#dfe5eb];
+  }
+  
+  .wix-dialog {
+    @apply bg-white rounded-md shadow-md border-[#dfe5eb];
+  }
+  
+  .rtl {
+    direction: rtl;
   }
 }

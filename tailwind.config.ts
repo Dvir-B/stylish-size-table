@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -56,6 +57,20 @@ export default {
           gray: "#8E9196",
           purple: "#D6BCFA",
           background: "#FFFFFF",
+        },
+        // Adding Wix design system colors
+        wix: {
+          blue: {
+            primary: "#3899ec",
+            secondary: "#4eb7f5",
+            hover: "#4eb7f5",
+          },
+          gray: {
+            border: "#dfe5eb",
+            background: "#f0f4f7",
+            text: "#162d3d",
+            textLight: "#7a92a5",
+          }
         },
       },
       keyframes: {

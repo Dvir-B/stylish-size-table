@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { createWidgetSdk } from "@wix/sdk";
+import { useWindow } from "@wix/sdk";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import SizeChart from "@/components/SizeChart";
@@ -15,14 +15,17 @@ const WixSizeChartWidget = () => {
   useEffect(() => {
     const initWixSdk = async () => {
       try {
-        const widgetSdk = await createWidgetSdk();
+        const window = useWindow();
         
-        if (widgetSdk) {
+        if (window) {
           console.log("Widget running in Wix environment");
           setIsWixEnvironment(true);
           
           // Get widget settings if available
-          const widgetSettings = await widgetSdk.settings.get();
+          // Note: For actual settings, you may need to implement getSettings()
+          // This is a placeholder for now
+          // const widgetSettings = await window.getSettings();
+          const widgetSettings = { buttonText: "טבלת מידות", buttonColor: "outline" };
           if (widgetSettings) {
             setSettings({
               buttonText: widgetSettings.buttonText || "טבלת מידות",
@@ -44,12 +47,12 @@ const WixSizeChartWidget = () => {
         <DialogTrigger asChild>
           <Button
             variant={settings.buttonColor as any || "outline"}
-            className="text-fashion-gray hover:text-fashion-purple hover:border-fashion-purple transition-colors"
+            className="wix-style-button hover:text-fashion-purple hover:border-fashion-purple transition-colors"
           >
             {settings.buttonText}
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl wix-dialog">
           <SizeChart />
         </DialogContent>
       </Dialog>
