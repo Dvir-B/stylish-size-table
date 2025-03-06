@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SizeChart from "@/components/SizeChart";
-import { createInstance } from "@wix/dashboard-sdk";
+import { createDashboardSdk } from "@wix/dashboard-sdk";
 
 const Index = () => {
   const [isWixEnvironment, setIsWixEnvironment] = useState(false);
@@ -13,7 +13,7 @@ const Index = () => {
     const initWixSdk = async () => {
       try {
         setIsLoading(true);
-        const dashboardSdk = await createInstance();
+        const dashboardSdk = await createDashboardSdk();
         
         // Check if we're in Wix environment
         if (dashboardSdk) {
