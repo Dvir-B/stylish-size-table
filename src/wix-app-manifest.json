@@ -1,0 +1,43 @@
+
+{
+  "name": "טבלת מידות מעוצבת",
+  "id": "custom-size-chart",
+  "platformType": "Apps",
+  "supportedChannels": [
+    "WEB"
+  ],
+  "supportedAuthorizationScopeTypes": [],
+  "scopes": [],
+  "components": [
+    {
+      "id": "size-chart-widget",
+      "name": "טבלת מידות",
+      "type": "WIDGET",
+      "pages": [
+        "PRODUCT"
+      ],
+      "settings": {
+        "enabled": true
+      }
+    },
+    {
+      "id": "size-chart-dashboard",
+      "name": "ניהול טבלת מידות",
+      "type": "DASHBOARD_SECTION",
+      "componentUrl": "/dashboard",
+      "pages": [
+        {
+          "id": "dashboard-home",
+          "name": "בית",
+          "componentUrl": "/dashboard",
+          "defaultPage": true
+        },
+        {
+          "id": "dashboard-settings",
+          "name": "הגדרות",
+          "componentUrl": "/dashboard/settings"
+        }
+      ]
+    }
+  ]
+}

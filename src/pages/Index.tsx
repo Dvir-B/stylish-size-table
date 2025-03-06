@@ -1,29 +1,76 @@
+
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SizeChart from "@/components/SizeChart";
+import { createDashboardSdk } from "@wix/dashboard-sdk";
 
 const Index = () => {
+  const [isWixEnvironment, setIsWixEnvironment] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Initialize Wix Dashboard SDK
+    const initWixSdk = async () => {
+      try {
+        setIsLoading(true);
+        const dashboardSdk = await createDashboardSdk();
+        
+        // Check if we're in Wix environment
+        if (dashboardSdk) {
+          console.log("Running in Wix environment");
+          setIsWixEnvironment(true);
+        }
+      } catch (error) {
+        console.error("Failed to initialize Wix SDK", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    initWixSdk();
+  }, []);
+
+  if (isLoading) {
+    return <div className="p-4 text-center">טוען...</div>;
+  }
+
   return (
-    <div className="min-h-screen bg-fashion-background p-8">
+    <div className={`min-h-screen ${isWixEnvironment ? "" : "bg-fashion-background"} p-4 md:p-8 rtl`}>
       <div className="max-w-4xl mx-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button
-              variant="outline"
-              className="text-fashion-gray hover:text-fashion-purple hover:border-fashion-purple transition-colors"
-            >
-              טבלת מידות
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-2xl">
-            <SizeChart />
-          </DialogContent>
-        </Dialog>
+        {isWixEnvironment ? (
+          <div className="border rounded-md p-6 shadow-sm">
+            <h2 className="text-xl font-medium mb-4 text-right">הגדרת טבלת מידות</h2>
+            <p className="text-fashion-gray mb-4 text-right">
+              הוספת טבלת מידות לחנות שלך תעזור ללקוחות לבחור את הגודל המתאים.
+            </p>
+            <SizeChartPreview />
+          </div>
+        ) : (
+          <SizeChartPreview />
+        )}
       </div>
+    </div>
+  );
+};
+
+// Preview component to show how the size chart will look in the store
+const SizeChartPreview = () => {
+  return (
+    <div className="mt-4">
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button
+            variant="outline"
+            className="text-fashion-gray hover:text-fashion-purple hover:border-fashion-purple transition-colors"
+          >
+            טבלת מידות
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-2xl">
+          <SizeChart />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
