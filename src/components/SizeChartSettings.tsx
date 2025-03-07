@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { createDashboardSdk } from "@wix/dashboard-sdk";
+import { dashboard } from "@wix/sdk";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -18,7 +18,7 @@ const SizeChartSettings = () => {
     const initDashboardSdk = async () => {
       try {
         setIsLoading(true);
-        const sdk = await createDashboardSdk();
+        const sdk = await dashboard.create();
         setDashboardSdk(sdk);
         
         // Get saved settings if available

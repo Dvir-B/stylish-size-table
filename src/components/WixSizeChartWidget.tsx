@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { getWindow } from "@wix/sdk";
+import { window as wixWindow } from "@wix/sdk";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import SizeChart from "@/components/SizeChart";
@@ -15,9 +15,7 @@ const WixSizeChartWidget = () => {
   useEffect(() => {
     const initWixSdk = async () => {
       try {
-        const window = getWindow();
-        
-        if (window) {
+        if (wixWindow) {
           console.log("Widget running in Wix environment");
           setIsWixEnvironment(true);
           
