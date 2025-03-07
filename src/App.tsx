@@ -6,8 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import SizeChartSettings from "./components/SizeChartSettings";
-import WixSizeChartWidget from "./components/WixSizeChartWidget";
+import Dashboard from "./pages/dashboard/Dashboard";
+import DashboardSettings from "./pages/dashboard/Settings";
+import Widget from "./pages/widget/Widget";
 
 const queryClient = new QueryClient();
 
@@ -16,12 +17,12 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/dashboard" element={<Index />} />
-          <Route path="/dashboard/settings" element={<SizeChartSettings />} />
-          <Route path="/widget" element={<WixSizeChartWidget />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/settings" element={<DashboardSettings />} />
+          <Route path="/widget" element={<Widget />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
