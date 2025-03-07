@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import { window as wixWindow } from "@wix/sdk";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import SizeChart from "@/components/SizeChart";
@@ -15,21 +14,17 @@ const WixSizeChartWidget = () => {
   useEffect(() => {
     const initWixSdk = async () => {
       try {
-        if (wixWindow) {
-          console.log("Widget running in Wix environment");
-          setIsWixEnvironment(true);
-          
-          // Get widget settings if available
-          // Note: For actual settings, you may need to implement getSettings()
-          // This is a placeholder for now
-          // const widgetSettings = await window.getSettings();
-          const widgetSettings = { buttonText: "טבלת מידות", buttonColor: "outline" };
-          if (widgetSettings) {
-            setSettings({
-              buttonText: widgetSettings.buttonText || "טבלת מידות",
-              buttonColor: widgetSettings.buttonColor || "outline",
-            });
-          }
+        // For development purposes, we're just using the default settings
+        console.log("Widget initializing");
+        setIsWixEnvironment(true);
+        
+        // Use static default settings for now
+        const widgetSettings = { buttonText: "טבלת מידות", buttonColor: "outline" };
+        if (widgetSettings) {
+          setSettings({
+            buttonText: widgetSettings.buttonText || "טבלת מידות",
+            buttonColor: widgetSettings.buttonColor || "outline",
+          });
         }
       } catch (error) {
         console.error("Failed to initialize Wix Widget SDK", error);

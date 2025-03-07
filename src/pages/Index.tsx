@@ -3,26 +3,21 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SizeChart from "@/components/SizeChart";
-import { dashboard } from "@wix/sdk";
 
 const Index = () => {
   const [isWixEnvironment, setIsWixEnvironment] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Initialize Wix Dashboard SDK
+    // Initialize environment check
     const initWixSdk = async () => {
       try {
         setIsLoading(true);
-        const dashboardSdk = await dashboard.create();
-        
-        // Check if we're in Wix environment
-        if (dashboardSdk) {
-          console.log("Running in Wix environment");
-          setIsWixEnvironment(true);
-        }
+        // For development purposes, assume not in Wix environment
+        console.log("Main page initializing");
+        setIsWixEnvironment(false);
       } catch (error) {
-        console.error("Failed to initialize Wix SDK", error);
+        console.error("Failed to initialize environment", error);
       } finally {
         setIsLoading(false);
       }

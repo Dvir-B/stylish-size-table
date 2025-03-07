@@ -1,37 +1,30 @@
 
 import { useState, useEffect } from "react";
-import { dashboard } from "@wix/sdk";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const SizeChartSettings = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [settings, setSettings] = useState({
     buttonText: "טבלת מידות",
     buttonColor: "outline",
   });
-  const [dashboardSdk, setDashboardSdk] = useState<any>(null);
 
   useEffect(() => {
     const initDashboardSdk = async () => {
       try {
         setIsLoading(true);
-        const sdk = await dashboard.create();
-        setDashboardSdk(sdk);
+        console.log("Dashboard initializing");
         
-        // Get saved settings if available
-        if (sdk) {
-          // This is a placeholder for actual settings retrieval
-          // const savedSettings = await sdk.settings.get();
-          const savedSettings = { buttonText: "טבלת מידות", buttonColor: "outline" };
-          if (savedSettings) {
-            setSettings({
-              buttonText: savedSettings.buttonText || "טבלת מידות",
-              buttonColor: savedSettings.buttonColor || "outline",
-            });
-          }
+        // Use static default settings for development
+        const savedSettings = { buttonText: "טבלת מידות", buttonColor: "outline" };
+        if (savedSettings) {
+          setSettings({
+            buttonText: savedSettings.buttonText || "טבלת מידות",
+            buttonColor: savedSettings.buttonColor || "outline",
+          });
         }
       } catch (error) {
         console.error("Failed to initialize Dashboard SDK", error);
@@ -44,30 +37,16 @@ const SizeChartSettings = () => {
   }, []);
 
   const saveSettings = async () => {
-    if (dashboardSdk) {
-      try {
-        // Placeholder for actual settings saving
-        // await dashboardSdk.settings.set(settings);
-        console.log("Settings saved successfully", settings);
-        
-        // Show success notification
-        if (dashboardSdk.notifications) {
-          dashboardSdk.notifications.showNotification({
-            message: "ההגדרות נשמרו בהצלחה",
-            type: "success",
-          });
-        }
-      } catch (error) {
-        console.error("Failed to save settings", error);
-        
-        // Show error notification
-        if (dashboardSdk.notifications) {
-          dashboardSdk.notifications.showNotification({
-            message: "שגיאה בשמירת ההגדרות",
-            type: "error",
-          });
-        }
-      }
+    try {
+      console.log("Settings saved successfully", settings);
+      
+      // Show success notification (mock for now)
+      alert("ההגדרות נשמרו בהצלחה");
+    } catch (error) {
+      console.error("Failed to save settings", error);
+      
+      // Show error notification
+      alert("שגיאה בשמירת ההגדרות");
     }
   };
 
