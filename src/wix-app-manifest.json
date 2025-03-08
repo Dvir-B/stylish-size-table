@@ -3,6 +3,7 @@
   "name": "טבלת מידות מעוצבת",
   "id": "custom-size-chart",
   "platformType": "Apps",
+  "appDefId": "custom-size-chart",
   "supportedChannels": [
     "WEB"
   ],
@@ -24,18 +25,15 @@
       "id": "size-chart-dashboard",
       "name": "ניהול טבלת מידות",
       "type": "DASHBOARD_SECTION",
-      "componentUrl": "/dashboard",
       "pages": [
         {
           "id": "dashboard-home",
           "name": "בית",
-          "componentUrl": "/dashboard",
           "defaultPage": true
         },
         {
           "id": "dashboard-settings",
-          "name": "הגדרות",
-          "componentUrl": "/dashboard/settings"
+          "name": "הגדרות"
         }
       ]
     }
