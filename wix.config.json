@@ -4,10 +4,10 @@
   "appId": "custom-size-chart",
   "src": {
     "dashboard": {
-      "entry": "src/dashboard.entry.tsx"
+      "entry": "src/dashboard/dashboard.entry.tsx"
     },
     "widget": {
-      "entry": "src/widget.entry.tsx"
+      "entry": "src/site/widget/widget.entry.tsx"
     }
   },
   "extensions": {

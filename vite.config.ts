@@ -23,8 +23,8 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       input: {
-        dashboard: path.resolve(__dirname, 'src/dashboard.entry.tsx'),
-        widget: path.resolve(__dirname, 'src/widget.entry.tsx')
+        dashboard: path.resolve(__dirname, 'src/dashboard/dashboard.entry.tsx'),
+        widget: path.resolve(__dirname, 'src/site/widget/widget.entry.tsx')
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
