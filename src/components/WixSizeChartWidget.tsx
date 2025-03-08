@@ -4,6 +4,9 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import SizeChart, { SizeData } from "@/components/SizeChart";
 
+// בייבוא של Wix SDK נשתמש בעתיד עם Wix SDK
+// import { createWidgetComponent } from '@wix/sdk';
+
 const WixSizeChartWidget = () => {
   const [isWixEnvironment, setIsWixEnvironment] = useState(false);
   const [settings, setSettings] = useState({
@@ -24,6 +27,9 @@ const WixSizeChartWidget = () => {
         // For development purposes, we're just using the default settings
         console.log("Widget initializing");
         setIsWixEnvironment(true);
+        
+        // ב-SDK אמיתי היינו משתמשים ב-Wix SDK לקבלת נתונים
+        // const { widgetSettings } = await wixWidgetSdk.settings.get();
         
         // Use static default settings for now
         const widgetSettings = { 
