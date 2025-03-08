@@ -1,0 +1,21 @@
+
+{
+  "name": "טבלת מידות מעוצבת",
+  "appId": "custom-size-chart",
+  "src": {
+    "dashboard": "dist/dashboard/index.html",
+    "widget": "dist/widget/index.html"
+  },
+  "extensions": {
+    "size-chart-widget": {
+      "pages": ["PRODUCT"]
+    },
+    "size-chart-dashboard": {
+      "pages": ["DASHBOARD"]
+    }
+  },
+  "scripts": {
+    "build": "npm run build",
+    "serve": "npm run dev"
+  }
+}
