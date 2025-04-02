@@ -1,11 +1,16 @@
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 import Widget from './Widget';
 
-// משתמש ב-document.getElementById להרכבת האפליקציה על אלמנט root
+// Root element for the widget
 const container = document.getElementById('root');
 if (container) {
   const root = createRoot(container);
-  root.render(<Widget />);
+  root.render(
+    <LanguageProvider>
+      <Widget />
+    </LanguageProvider>
+  );
 }

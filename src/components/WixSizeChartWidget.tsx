@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import SizeChart, { SizeData } from "@/components/SizeChart";
-import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const WixSizeChartWidgetContent = () => {
+const WixSizeChartWidget = () => {
   const [isWixEnvironment, setIsWixEnvironment] = useState(false);
   const [settings, setSettings] = useState({
     buttonText: "טבלת מידות",
@@ -68,15 +68,6 @@ const WixSizeChartWidgetContent = () => {
         </DialogContent>
       </Dialog>
     </div>
-  );
-};
-
-// Wrapper component that includes LanguageProvider
-const WixSizeChartWidget = () => {
-  return (
-    <LanguageProvider>
-      <WixSizeChartWidgetContent />
-    </LanguageProvider>
   );
 };
 
