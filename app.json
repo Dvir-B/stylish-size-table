@@ -1,0 +1,22 @@
+
+{
+  "name": "טבלת מידות מעוצבת",
+  "version": "1.0.0",
+  "displayName": {
+    "en": "Custom Size Chart",
+    "he": "טבלת מידות מעוצבת"
+  },
+  "description": {
+    "en": "Customizable size chart for your products",
+    "he": "טבלת מידות מותאמת אישית עבור המוצרים שלך"
+  },
+  "supportUrl": "https://support.example.com/size-chart",
+  "permissions": {
+    "scope": "PUBLIC"
+  },
+  "platforms": {
+    "web": {
+      "manifest": "src/wix-app-manifest.json"
+    }
+  }
+}
