@@ -3,11 +3,9 @@ import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import SizeChart, { SizeData } from "@/components/SizeChart";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 
-// בייבוא של Wix SDK נשתמש בעתיד עם Wix SDK
-// import { createWidgetComponent } from '@wix/sdk';
-
-const WixSizeChartWidget = () => {
+const WixSizeChartWidgetContent = () => {
   const [isWixEnvironment, setIsWixEnvironment] = useState(false);
   const [settings, setSettings] = useState({
     buttonText: "טבלת מידות",
@@ -21,6 +19,8 @@ const WixSizeChartWidget = () => {
     { size: "XL", chest: "107-112", waist: "91-96", hips: "107-112" },
   ]);
 
+  const { t, language } = useLanguage();
+
   useEffect(() => {
     const initWixSdk = async () => {
       try {
@@ -33,14 +33,14 @@ const WixSizeChartWidget = () => {
         
         // Use static default settings for now
         const widgetSettings = { 
-          buttonText: "טבלת מידות", 
+          buttonText: language === 'he' ? "טבלת מידות" : "Size Chart", 
           buttonColor: "outline",
           // בעתיד נוכל לקבל גם את נתוני הטבלה מהשרת
         };
         
         if (widgetSettings) {
           setSettings({
-            buttonText: widgetSettings.buttonText || "טבלת מידות",
+            buttonText: widgetSettings.buttonText || t('size.chart.button'),
             buttonColor: widgetSettings.buttonColor || "outline",
           });
         }
@@ -50,17 +50,17 @@ const WixSizeChartWidget = () => {
     };
 
     initWixSdk();
-  }, []);
+  }, [language, t]);
 
   return (
-    <div dir="rtl" className="wix-size-chart-widget">
+    <div dir={language === 'he' ? 'rtl' : 'ltr'} className="wix-size-chart-widget">
       <Dialog>
         <DialogTrigger asChild>
           <Button
             variant={settings.buttonColor as any || "outline"}
             className="wix-style-button hover:text-fashion-purple hover:border-fashion-purple transition-colors"
           >
-            {settings.buttonText}
+            {settings.buttonText || t('size.chart.button')}
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-2xl wix-dialog">
@@ -68,6 +68,15 @@ const WixSizeChartWidget = () => {
         </DialogContent>
       </Dialog>
     </div>
+  );
+};
+
+// Wrapper component that includes LanguageProvider
+const WixSizeChartWidget = () => {
+  return (
+    <LanguageProvider>
+      <WixSizeChartWidgetContent />
+    </LanguageProvider>
   );
 };
 

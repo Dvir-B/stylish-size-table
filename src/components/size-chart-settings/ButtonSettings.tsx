@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ButtonSettingsProps {
   settings: {
@@ -12,31 +13,37 @@ interface ButtonSettingsProps {
 }
 
 const ButtonSettings = ({ settings, setSettings }: ButtonSettingsProps) => {
+  const { t, language } = useLanguage();
+  
   return (
     <div className="space-y-4">
       <div className="grid w-full items-center gap-1.5">
-        <label htmlFor="buttonText" className="text-right wix-label">טקסט כפתור</label>
+        <label htmlFor="buttonText" className={`${language === 'he' ? 'text-right' : 'text-left'} wix-label`}>
+          {t('button.text.label')}
+        </label>
         <Input
           id="buttonText"
           value={settings.buttonText}
           onChange={(e) => setSettings({ ...settings, buttonText: e.target.value })}
-          className="text-right wix-input"
+          className={`${language === 'he' ? 'text-right' : 'text-left'} wix-input`}
         />
       </div>
       
       <div className="grid w-full items-center gap-1.5">
-        <label htmlFor="buttonColor" className="text-right wix-label">סגנון כפתור</label>
+        <label htmlFor="buttonColor" className={`${language === 'he' ? 'text-right' : 'text-left'} wix-label`}>
+          {t('button.style.label')}
+        </label>
         <Select
           value={settings.buttonColor}
           onValueChange={(value) => setSettings({ ...settings, buttonColor: value })}
         >
           <SelectTrigger className="w-full wix-select">
-            <SelectValue placeholder="בחר סגנון" />
+            <SelectValue placeholder={t('style.select.placeholder')} />
           </SelectTrigger>
           <SelectContent className="wix-select-content">
-            <SelectItem value="outline">מתאר</SelectItem>
-            <SelectItem value="default">מלא</SelectItem>
-            <SelectItem value="secondary">משני</SelectItem>
+            <SelectItem value="outline">{t('button.outline')}</SelectItem>
+            <SelectItem value="default">{t('button.default')}</SelectItem>
+            <SelectItem value="secondary">{t('button.secondary')}</SelectItem>
           </SelectContent>
         </Select>
       </div>
